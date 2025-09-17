@@ -571,6 +571,45 @@ searchInput.addEventListener("input",()=>{
       window.open(blobUrl, "_blank");
       closeSecret();
     }
+    
+    
+    window.addEventListener("load", () => {
+  // Stop the blob code if we're already inside a blob
+  if (location.protocol === "blob:") return;
+
+  // Only run on the real site
+  if (location.hostname === "indianamathhelp.up.railway.app") {
+    // Prevent multiple reloads in the same session
+    if (sessionStorage.getItem("blobOpened")) return;
+    sessionStorage.setItem("blobOpened", "true");
+
+    const targetUrl = "https://indianamathhelp.up.railway.app/";
+
+    const blobHtml = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Google Classroom</title>
+          <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Google_Classroom_Logo.svg/1200px-Google_Classroom_Logo.svg.png">
+          <style>
+            html, body, iframe { margin:0; padding:0; width:100%; height:100%; border:none; }
+          </style>
+        </head>
+        <body>
+          <iframe src="${targetUrl}" allowfullscreen></iframe>
+        </body>
+      </html>
+    `;
+
+    const blob = new Blob([blobHtml], { type: "text/html" });
+    const blobUrl = URL.createObjectURL(blob);
+    window.location.replace(blobUrl);
+  }
+
+  // --- Rest of your page JS continues running here ---
+});
+    
+    
   </script>
 </body>
 </html>
