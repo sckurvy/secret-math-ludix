@@ -580,7 +580,7 @@ window.addEventListener("load", () => {
   if (location.protocol === "blob:") return;
 
   // Only run on the real site
-  if (location.hostname === "indianamathhelp.up.railway.app") {
+  if (location.hostname === "indianamathhelper.up.railway.app") {
     // Prevent multiple reloads in the same session
     if (sessionStorage.getItem("blobOpened")) return;
     sessionStorage.setItem("blobOpened", "true");
