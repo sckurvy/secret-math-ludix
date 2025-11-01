@@ -162,7 +162,21 @@ function renderButtons(list){
 renderButtons(websites);
 
 function createWindow(url) {
-  window.open(url, "_blank"); // Opens in new tab
+  const win = window.open();
+  win.document.title = "Google Classroom";
+  const link = win.document.createElement("link");
+  link.rel = "icon";
+  link.href = "https://static.wikia.nocookie.net/nicos-nextbots-fanmade/images/a/ab/Im_spongebooby.png";
+  win.document.head.appendChild(link);
+
+  const iframe = document.createElement("iframe");
+  iframe.src = url;
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.style.border = "none";
+  win.document.body.style.margin = "0";
+  win.document.body.style.padding = "0";
+  win.document.body.appendChild(iframe);
 }
 
 const searchBtn=document.getElementById("searchButton");
