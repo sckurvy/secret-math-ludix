@@ -1,135 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Ludix</title>
-  <link rel="icon" href="https://i.ibb.co/hRk7Q21p/Screenshot-2025-09-17-10-47-39-AM.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    *{box-sizing:border-box;font-family:'Outfit',sans-serif;}
-    body{
-      margin:0;
-      color:#fff;
-      min-height:100vh;
-      background:url('https://i.pinimg.com/originals/0e/98/44/0e9844465b3cdce0a0611850a07b7457.gif') center/cover no-repeat fixed;
-      padding:80px 30px;
-    }
-    body::before {
-      content:"";
-      position:fixed;inset:0;
-      background:rgba(0,0,0,0.5);
-      z-index:-1;
-    }
-    .topbar{
-      position:fixed;top:20px;left:20px;display:flex;gap:10px;align-items:center;z-index:100;
-    }
-    #searchInput{
-      display:none;padding:8px 12px;font-size:15px;border-radius:8px;
-      border:none;outline:none;background:#1a1d23;color:#fff;
-    }
-    #searchButton{
-      background:none;border:none;color:#fff;font-size:22px;cursor:pointer;
-    }
-    h1{
-      text-align:center;
-      font-weight:700;
-      font-size:40px;
-      letter-spacing:1px;
-      margin:0 0 30px;
-      text-shadow:0 4px 15px rgba(0,0,0,.5);
-    }
-    .section-title{
-      text-align:center;
-      margin-top:50px;margin-bottom:15px;
-      font-size:22px;font-weight:600;text-transform:uppercase;
-      color:#ddd;text-shadow:0 2px 10px rgba(0,0,0,.6);
-    }
-    .update-log{
-      max-width:800px;margin:0 auto 40px;
-      background:rgba(0,0,0,0.4);
-      padding:20px;border-radius:12px;
-      color:#f0f0f0;line-height:1.5;font-size:15px;
-      box-shadow:0 5px 25px rgba(0,0,0,.3);
-    }
-    .launcher-grid{
-      margin-top:30px;
-      display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-      width:100%;max-width:1000px;margin-inline:auto;
-    }
-    .launch-btn {
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #fff;
-      padding: 16px 12px;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.25s;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      backdrop-filter: blur(6px);
-    }
-    .launch-btn:hover {
-      transform: translateY(-4px) scale(1.05);
-      background: rgba(0, 0, 0, 0.55);
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(255,255,255,0.15);
-      mix-blend-mode: lighten;
-      z-index: -1;
-    }
+<meta charset="UTF-8" />
+<title>Ludix</title>
+<link rel="icon" href="https://i.ibb.co/hRk7Q21p/Screenshot-2025-09-17-10-47-39-AM.png" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;font-family:'Outfit',sans-serif;}
+body{
+  margin:0;
+  color:#fff;
+  min-height:100vh;
+  background:url('https://i.pinimg.com/originals/0e/98/44/0e9844465b3cdce0a0611850a07b7457.gif') center/cover no-repeat fixed;
+  padding:80px 30px;
+}
+body::before {
+  content:"";
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.5);
+  z-index:-1;
+}
+.topbar{
+  position:fixed;top:20px;left:20px;display:flex;gap:10px;align-items:center;z-index:100;
+}
+#searchInput{
+  display:none;padding:8px 12px;font-size:15px;border-radius:8px;
+  border:none;outline:none;background:#1a1d23;color:#fff;
+}
+#searchButton{
+  background:none;border:none;color:#fff;font-size:22px;cursor:pointer;
+}
+h1{
+  text-align:center;
+  font-weight:700;
+  font-size:40px;
+  letter-spacing:1px;
+  margin:0 0 30px;
+  text-shadow:0 4px 15px rgba(0,0,0,.5);
+}
+.section-title{
+  text-align:center;
+  margin-top:50px;margin-bottom:15px;
+  font-size:22px;font-weight:600;text-transform:uppercase;
+  color:#ddd;text-shadow:0 2px 10px rgba(0,0,0,.6);
+}
+.update-log{
+  max-width:800px;margin:0 auto 40px;
+  background:rgba(0,0,0,0.4);
+  padding:20px;border-radius:12px;
+  color:#f0f0f0;line-height:1.5;font-size:15px;
+  box-shadow:0 5px 25px rgba(0,0,0,.3);
+}
+.launcher-grid{
+  margin-top:30px;
+  display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  width:100%;max-width:1000px;margin-inline:auto;
+}
+.launch-btn {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 16px 12px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  backdrop-filter: blur(6px);
+}
+.launch-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: rgba(0, 0, 0, 0.55);
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  mix-blend-mode: lighten;
+  z-index: -1;
+}
 
-    /* Splash screen */
-    #splashScreen {
-      position:fixed;
-      inset:0;
-      background:#000;
-      color:#fff;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      z-index:9999;
-    }
-    #enterButton {
-      font-size:36px;
-      padding:40px 80px;
-      background:red;
-      color:white;
-      border:none;
-      border-radius:20px;
-      cursor:pointer;
-      animation:flash 1s infinite;
-    }
-    @keyframes flash {
-      0%,50%,100% {opacity:1;}
-      25%,75% {opacity:0;}
-    }
-  </style>
+/* Splash button */
+#splashBtn {
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:50px;
+  font-weight:bold;
+  color:#fff;
+  cursor:pointer;
+  z-index:9999;
+  animation: flash 1s infinite alternate;
+  text-align:center;
+}
+@keyframes flash {
+  0% {opacity:1;}
+  50% {opacity:0.5;}
+  100% {opacity:1;}
+}
+</style>
 </head>
 <body>
-  <!-- Splash screen -->
-  <div id="splashScreen">
-    <button id="enterButton">CLICK TO ENTER</button>
-  </div>
 
-  <div class="topbar">
-    <button id="searchButton">🔍</button>
-    <input type="text" id="searchInput" placeholder="Search games...">
-  </div>
+<div class="topbar">
+  <button id="searchButton">🔍</button>
+  <input type="text" id="searchInput" placeholder="Search games...">
+</div>
 
-  <div style="text-align:center; margin-bottom:40px;">
-    <img src="https://i.ibb.co/rfQCWmDh/Chat-GPT-Image-Sep-17-2025-10-27-01-AM-removebg-preview.png" 
-         alt="Ludix Logo" 
-         style="height:200px; object-fit:contain; filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));">
-  </div>
+<div style="text-align:center; margin-bottom:40px;">
+  <img src="https://i.ibb.co/rfQCWmDh/Chat-GPT-Image-Sep-17-2025-10-27-01-AM-removebg-preview.png" 
+       alt="Ludix Logo" 
+       style="height:200px; object-fit:contain; filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));">
+</div>
 
-  <div class="launcher-grid" id="launcherGrid"></div>
+<div class="launcher-grid" id="launcherGrid"></div>
 
-  <div class="footer">Ludix</div>
+<div class="footer">Ludix</div>
 
 <script>
 const websites = [
@@ -194,10 +187,10 @@ renderButtons(websites);
 
 function createWindow(url) {
   const win = window.open();
-  win.document.title = "Google Classroom";
+  win.document.title = "Ludix";
   const link = win.document.createElement("link");
   link.rel = "icon";
-  link.href = "https://static.wikia.nocookie.net/nicos-nextbots-fanmade/images/a/ab/Im_spongebooby.png";
+  link.href = "https://i.ibb.co/hRk7Q21p/Screenshot-2025-09-17-10-47-39-AM.png";
   win.document.head.appendChild(link);
 
   const iframe = document.createElement("iframe");
@@ -210,21 +203,6 @@ function createWindow(url) {
   win.document.body.appendChild(iframe);
 }
 
-// Splash logic
-const splash = document.getElementById("splashScreen");
-const enterBtn = document.getElementById("enterButton");
-
-// Only show splash if not already in about:blank
-if (window.opener || window.name === "about:blank") {
-  splash.style.display = "none";
-} else {
-  enterBtn.onclick = () => {
-    createWindow(window.location.href);
-    splash.remove();
-    window.close();
-  };
-}
-
 const searchBtn=document.getElementById("searchButton");
 const searchInput=document.getElementById("searchInput");
 searchBtn.onclick=()=>{
@@ -235,6 +213,20 @@ searchInput.addEventListener("input",()=>{
   const q=searchInput.value.toLowerCase();
   renderButtons(websites.filter(w=>w.name.toLowerCase().includes(q)));
 });
+
+// Splash Button Logic
+if(window.location.href !== "about:blank"){
+  const splash = document.createElement("div");
+  splash.id = "splashBtn";
+  splash.textContent = "CLICK TO ENTER";
+  document.body.appendChild(splash);
+
+  splash.onclick = () => {
+    splash.remove();
+    createWindow(window.location.href);
+    window.close();
+  };
+}
 </script>
 </body>
 </html>
