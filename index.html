@@ -6,58 +6,60 @@
   <link rel="icon" href="https://i.ibb.co/hRk7Q21p/Screenshot-2025-09-17-10-47-39-AM.png" />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
-    *{box-sizing:border-box;font-family:'Outfit',sans-serif;}
-    body{
-      margin:0;
-      color:#fff;
-      min-height:100vh;
-      background:url('https://i.pinimg.com/originals/0e/98/44/0e9844465b3cdce0a0611850a07b7457.gif') center/cover no-repeat fixed;
-      padding:80px 30px;
+    * { box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+    body {
+      margin: 0;
+      color: #fff;
+      min-height: 100vh;
+      background: url('https://i.pinimg.com/originals/0e/98/44/0e9844465b3cdce0a0611850a07b7457.gif') center/cover no-repeat fixed;
+      padding: 80px 30px;
     }
     body::before {
-      content:"";
-      position:fixed;inset:0;
-      background:rgba(0,0,0,0.5);
-      z-index:-1;
+      content: "";
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
     }
-    .topbar{
-      position:fixed;top:20px;left:20px;display:flex;gap:10px;align-items:center;z-index:100;
+    .topbar {
+      position: fixed; top: 20px; left: 20px;
+      display: flex; gap: 10px; align-items: center; z-index: 100;
     }
-    #searchInput{
-      display:none;padding:8px 12px;font-size:15px;border-radius:8px;
-      border:none;outline:none;background:#1a1d23;color:#fff;
+    #searchInput {
+      display: none;
+      padding: 8px 12px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: #1a1d23;
+      color: #fff;
     }
-    #searchButton{
-      background:none;border:none;color:#fff;font-size:22px;cursor:pointer;
+    #searchButton {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
     }
-    h1{
-      text-align:center;
-      font-weight:700;
-      font-size:40px;
-      letter-spacing:1px;
-      margin:0 0 30px;
-      text-shadow:0 4px 15px rgba(0,0,0,.5);
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 40px;
+      letter-spacing: 1px;
+      margin: 0 0 30px;
+      text-shadow: 0 4px 15px rgba(0,0,0,.5);
     }
-    .section-title{
-      text-align:center;
-      margin-top:50px;margin-bottom:15px;
-      font-size:22px;font-weight:600;text-transform:uppercase;
-      color:#ddd;text-shadow:0 2px 10px rgba(0,0,0,.6);
-    }
-    .update-log{
-      max-width:800px;margin:0 auto 40px;
-      background:rgba(0,0,0,0.4);
-      padding:20px;border-radius:12px;
-      color:#f0f0f0;line-height:1.5;font-size:15px;
-      box-shadow:0 5px 25px rgba(0,0,0,.3);
-    }
-    .launcher-grid{
-      margin-top:30px;
-      display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-      width:100%;max-width:1000px;margin-inline:auto;
+    .launcher-grid {
+      margin-top: 30px;
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      width: 100%;
+      max-width: 1000px;
+      margin-inline: auto;
     }
     .launch-btn {
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0,0,0,0.35);
       border: 1px solid rgba(255,255,255,0.15);
       color: #fff;
       padding: 16px 12px;
@@ -71,7 +73,7 @@
     }
     .launch-btn:hover {
       transform: translateY(-4px) scale(1.05);
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0,0,0,0.55);
     }
     body::before {
       content: "";
@@ -81,6 +83,16 @@
       mix-blend-mode: lighten;
       z-index: -1;
     }
+    #mainContent {
+      margin-top: 50px;
+    }
+    iframe {
+      width: 100%;
+      height: 90vh;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
   </style>
 </head>
 <body>
@@ -89,103 +101,96 @@
     <input type="text" id="searchInput" placeholder="Search games...">
   </div>
 
-<div style="text-align:center; margin-bottom:40px;">
-  <img src="https://i.ibb.co/rfQCWmDh/Chat-GPT-Image-Sep-17-2025-10-27-01-AM-removebg-preview.png" 
-       alt="Ludix Logo" 
-       style="height:200px; object-fit:contain; filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));">
-</div>
+  <div style="text-align:center; margin-bottom:40px;">
+    <img src="https://i.ibb.co/rfQCWmDh/Chat-GPT-Image-Sep-17-2025-10-27-01-AM-removebg-preview.png" 
+         alt="Ludix Logo" 
+         style="height:200px; object-fit:contain; filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));">
+  </div>
 
   <div class="launcher-grid" id="launcherGrid"></div>
 
-  <div class="footer">Ludix</div>
+  <div id="mainContent"></div>
 
-<script>
-const websites = [
-  { name: "Proxy (UPDATED)", url: "https://truffled.lol/" },
-  { name: "Chat", url: "https://lanesvillechat.onrender.com/" },
-  { name: "Link Unblocker", url: "https://superduperunblocker.onrender.com/" },
-  { name: "Minecraft", url: "https://x.mess.eu.org/" },
-  { name: "Drift Hunters", url: "https://htmlxm.github.io/h/drift-hunters/" },
-    { name: "PokeRouge", url: "https://playpokerogue.com/" },
-  { name: "Florr.io", url: "https://florr.io/" },
-  { name: "Hoop Grids", url: "https://hoopgrids.com/" },
-    { name: "Growden", url: "https://growden.io/" },
-  { name: "Hornex.pro", url: "https://hornex.pro/" },
-  { name: "Zorr.pro", url: "https://zorr.pro/" },
-  { name: "NBA2kdb", url: "https://2kdb.net/" },
-  { name: "Free Rider Jumps", url: "https://freeriderjumps.com/" },
-  { name: "Happy Wheels", url: "https://cbgamesdev.github.io/chilibowlflash/hw/index.html" },
-  { name: "Clash Royale", url: "https://www.easyfun.gg/cloud-games/clash-royale-cloud-online.html"},
-  { name: "SmithJack", url: "https://unblocked-games.s3.amazonaws.com/jacksmith.html"},
-  { name: "Wild Castle", url: "https://www.wildcastle.io/"},
-  { name: "Clash of Vikings", url: "https://www.bgames.com/game/clash-royale-online/" },
-  { name: "1.12 Minecraft", url: "https://freedombrowser.org/static/mc/1.12.2/wasm/" },
-  { name: "Proxy2", url: "https://when.casaye.com/" },
-  { name: "Proxy3", url: "https://school.pepikutan.net" },
-  { name: "Minecraft Version Client", url: "https://tuff.speedslicer.dev/" },
-  { name: "1v1.lol", url: "https://selenite.cc/semag/1v1lol/index.html" },
-  { name: "Capybara Clicker", url: "https://capybara-game.com/" },
-  { name: "Movies", url: "https://ww20.0123movie.net/" }, 
-  { name: "ULTRAKILL (TAKES A LONG TIME TO LOAD)", url: "https://truffled.lol/games/ultrakill/ultrakill/index.html" }, 
-  { name: "ALT SITE", url: "https://superduperog.netlify.app/" },
-  { name: "Shell Shockers", url: "https://superdupershell.netlify.app/" },
-  { name: "Slope", url: "https://mathadventure1.github.io/slope/slope/index.html" },
-  { name: "Line Rider", url: "https://www.linerider.com/" },
-  { name: "Tunnel Rush", url: "https://ubg44.github.io/TunnelRush/" },
-  { name: "Now.gg", url: "https://web.archive.org/web/20241112154118/now.gg" },
-  { name: "Tetris", url: "https://tetris.com/play-tetris" },
-  { name: "Slither.io", url: "http://slither.com/io" },
-  { name: "Stumble guys ( Server 1 )", url: "https://www.stumbleguys.com/play" },
-  { name: "Stumble guys ( server 2 )", url: "https://nowgg.lol/apps/kitika-games/7999/stumble-guys.html" },
-  { name: "Infinite Craft", url: "https://infinite-craft.com/infinite-craft/" },
-  { name: "WorldGuessr", url: "https://www.worldguessr.com/" },
-  { name: "Run 3", url: "https://lekug.github.io/tn6pS9dCf37xAhkJv/" },
-  { name: "Cookie Clicker", url: "https://cookieclicker-unblocked.pages.dev/" },
-  { name: "Time Shooter SWAT", url: "https://games.crazygames.com/en_US/time-shooter-3-swat/index.html" },
-  { name: "idle breakout", url: "https://hoodamath.com/games/idlebreakout.html" },
-  { name: "Stick Defenders", url: "https://agar.cc/games/stick-defenders.unblocked" },
-  { name: "Bloxd.io", url: "https://bloxd.io/" }
-];
+  <div class="footer" style="text-align:center; margin-top:40px;">Ludix</div>
 
-const grid = document.getElementById("launcherGrid");
-function renderButtons(list){
-  grid.innerHTML="";
-  list.forEach(site=>{
-    const btn=document.createElement("button");
-    btn.className="launch-btn";
-    btn.textContent=site.name;
-    btn.onclick=()=>createWindow(site.url);
-    grid.appendChild(btn);
-  });
-}
-renderButtons(websites);
+  <script>
+    const websites = [
+      { name: "Proxy (UPDATED)", url: "https://truffled.lol/" },
+      { name: "Chat", url: "https://lanesvillechat.onrender.com/" },
+      { name: "Link Unblocker", url: "https://superduperunblocker.onrender.com/" },
+      { name: "Minecraft", url: "https://x.mess.eu.org/" },
+      { name: "Drift Hunters", url: "https://htmlxm.github.io/h/drift-hunters/" },
+      { name: "PokeRouge", url: "https://playpokerogue.com/" },
+      { name: "Florr.io", url: "https://florr.io/" },
+      { name: "Hoop Grids", url: "https://hoopgrids.com/" },
+      { name: "Growden", url: "https://growden.io/" },
+      { name: "Hornex.pro", url: "https://hornex.pro/" },
+      { name: "Zorr.pro", url: "https://zorr.pro/" },
+      { name: "NBA2kdb", url: "https://2kdb.net/" },
+      { name: "Free Rider Jumps", url: "https://freeriderjumps.com/" },
+      { name: "Happy Wheels", url: "https://cbgamesdev.github.io/chilibowlflash/hw/index.html" },
+      { name: "Clash Royale", url: "https://www.easyfun.gg/cloud-games/clash-royale-cloud-online.html" },
+      { name: "SmithJack", url: "https://unblocked-games.s3.amazonaws.com/jacksmith.html" },
+      { name: "Wild Castle", url: "https://www.wildcastle.io/" },
+      { name: "Clash of Vikings", url: "https://www.bgames.com/game/clash-royale-online/" },
+      { name: "1.12 Minecraft", url: "https://freedombrowser.org/static/mc/1.12.2/wasm/" },
+      { name: "Proxy2", url: "https://when.casaye.com/" },
+      { name: "Proxy3", url: "https://school.pepikutan.net" },
+      { name: "Minecraft Version Client", url: "https://tuff.speedslicer.dev/" },
+      { name: "1v1.lol", url: "https://selenite.cc/semag/1v1lol/index.html" },
+      { name: "Capybara Clicker", url: "https://capybara-game.com/" },
+      { name: "Movies", url: "https://ww20.0123movie.net/" }, 
+      { name: "ULTRAKILL (TAKES A LONG TIME TO LOAD)", url: "https://truffled.lol/games/ultrakill/ultrakill/index.html" }, 
+      { name: "ALT SITE", url: "https://superduperog.netlify.app/" },
+      { name: "Shell Shockers", url: "https://superdupershell.netlify.app/" },
+      { name: "Slope", url: "https://mathadventure1.github.io/slope/slope/index.html" },
+      { name: "Line Rider", url: "https://www.linerider.com/" },
+      { name: "Tunnel Rush", url: "https://ubg44.github.io/TunnelRush/" },
+      { name: "Now.gg", url: "https://web.archive.org/web/20241112154118/now.gg" },
+      { name: "Tetris", url: "https://tetris.com/play-tetris" },
+      { name: "Slither.io", url: "http://slither.com/io" },
+      { name: "Stumble guys ( Server 1 )", url: "https://www.stumbleguys.com/play" },
+      { name: "Stumble guys ( server 2 )", url: "https://nowgg.lol/apps/kitika-games/7999/stumble-guys.html" },
+      { name: "Infinite Craft", url: "https://infinite-craft.com/infinite-craft/" },
+      { name: "WorldGuessr", url: "https://www.worldguessr.com/" },
+      { name: "Run 3", url: "https://lekug.github.io/tn6pS9dCf37xAhkJv/" },
+      { name: "Cookie Clicker", url: "https://cookieclicker-unblocked.pages.dev/" },
+      { name: "Time Shooter SWAT", url: "https://games.crazygames.com/en_US/time-shooter-3-swat/index.html" },
+      { name: "idle breakout", url: "https://hoodamath.com/games/idlebreakout.html" },
+      { name: "Stick Defenders", url: "https://agar.cc/games/stick-defenders.unblocked" },
+      { name: "Bloxd.io", url: "https://bloxd.io/" }
+    ];
 
-function createWindow(url) {
-  // Clear any previous iframe
-  const main = document.getElementById("mainContent");
-  main.innerHTML = ""; 
+    const grid = document.getElementById("launcherGrid");
+    const mainContent = document.getElementById("mainContent");
 
-  // Create iframe pointing to your proxy
-  const iframe = document.createElement("iframe");
-  iframe.src = `https://otto-proxy-c5dy.onrender.com/proxy?url=${encodeURIComponent(url)}`;
-  iframe.style.width = "100%";
-  iframe.style.height = "90vh";
-  iframe.style.border = "none";
+    function renderButtons(list) {
+      grid.innerHTML = "";
+      list.forEach(site => {
+        const btn = document.createElement("button");
+        btn.className = "launch-btn";
+        btn.textContent = site.name;
+        btn.onclick = () => {
+          mainContent.innerHTML = `<iframe src="${site.url}" allowfullscreen></iframe>`;
+        };
+        grid.appendChild(btn);
+      });
+    }
 
-  main.appendChild(iframe);
-}
+    renderButtons(websites);
 
+    const searchBtn = document.getElementById("searchButton");
+    const searchInput = document.getElementById("searchInput");
 
-const searchBtn=document.getElementById("searchButton");
-const searchInput=document.getElementById("searchInput");
-searchBtn.onclick=()=>{
-  searchInput.style.display=searchInput.style.display==='block'?'none':'block';
-  searchInput.focus();
-};
-searchInput.addEventListener("input",()=>{
-  const q=searchInput.value.toLowerCase();
-  renderButtons(websites.filter(w=>w.name.toLowerCase().includes(q)));
-});
-<\/script>
+    searchBtn.onclick = () => {
+      searchInput.style.display = searchInput.style.display === 'block' ? 'none' : 'block';
+      searchInput.focus();
+    };
+
+    searchInput.addEventListener("input", () => {
+      const q = searchInput.value.toLowerCase();
+      renderButtons(websites.filter(w => w.name.toLowerCase().includes(q)));
+    });
+  </script>
 </body>
 </html>
