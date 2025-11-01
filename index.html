@@ -56,14 +56,6 @@
   #searchButton{
     background:none;border:none;color:#fff;font-size:22px;cursor:pointer;
   }
-  h1{
-    text-align:center;
-    font-weight:700;
-    font-size:40px;
-    letter-spacing:1px;
-    margin:0 0 30px;
-    text-shadow:0 4px 15px rgba(0,0,0,.5);
-  }
   .launcher-grid{
     margin-top:30px;
     display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
@@ -190,11 +182,15 @@ function createWindow(url) {
   win.document.body.appendChild(iframe);
 }
 
-// Splash button
-document.getElementById("enterButton").onclick = () => {
-  createWindow(window.location.href); // open the site itself in new about:blank
-  window.close(); // close original host tab
-};
+// Only show splash if not already in about:blank
+if (window.opener || window.name !== "") {
+  document.getElementById("splashScreen").style.display = "none";
+} else {
+  document.getElementById("enterButton").onclick = () => {
+    createWindow(window.location.href);
+    window.close();
+  };
+}
 
 // Search toggle
 const searchBtn=document.getElementById("searchButton");
