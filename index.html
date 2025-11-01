@@ -545,14 +545,15 @@ function renderButtons(list){
 renderButtons(websites);
 
 function createWindow(url){
-  const wrapper = \`
+  const wrapper = \\\`
   <html><head><title>Ludix Page</title>
   <link rel="icon" href="https://i.ibb.co/hRk7Q21p/Screenshot-2025-09-17-10-47-39-AM.png">
   <style>html,body,iframe{margin:0;padding:0;width:100%;height:100%;border:none;}</style></head>
-  <body><iframe src="\${url}" allowfullscreen></iframe></body></html>\`;
-  const blob = new Blob([wrapper], {type:"text/html"});
-  const blobUrl = URL.createObjectURL(blob);
-  window.open(blobUrl,"_blank");
+  <body><iframe src="\\\${url}" allowfullscreen></iframe></body></html>\\\`;
+  
+  const newWindow = window.open('about:blank', '_blank');
+  newWindow.document.write(wrapper);
+  newWindow.document.close();
 }
 
 const searchBtn=document.getElementById("searchButton");
@@ -565,20 +566,15 @@ searchInput.addEventListener("input",()=>{
   const q=searchInput.value.toLowerCase();
   renderButtons(websites.filter(w=>w.name.toLowerCase().includes(q)));
 });
-<\/script>
+<\\/script>
 </body>
 </html>`;
 
-      const blob = new Blob([ludixSite], {type: "text/html"});
-      const blobUrl = URL.createObjectURL(blob);
-      window.open(blobUrl, "_blank");
+      const newWindow = window.open('about:blank', '_blank');
+      newWindow.document.write(ludixSite);
+      newWindow.document.close();
       closeSecret();
     }
-    
-    
-
-    
-    
   </script>
 </body>
 </html>
