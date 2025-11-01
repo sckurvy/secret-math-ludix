@@ -1,82 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Ludix</title>
-  <link rel="icon" href="https://i.ibb.co/hRk7Q21p/Screenshot-2025-09-17-10-47-39-AM.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    *{box-sizing:border-box;font-family:'Outfit',sans-serif;}
-    body{
-      margin:0;
-      color:#fff;
-      min-height:100vh;
-      background:url('https://i.pinimg.com/originals/0e/98/44/0e9844465b3cdce0a0611850a07b7457.gif') center/cover no-repeat fixed;
-      padding:80px 30px;
-    }
-    body::before {
-      content:"";
-      position:fixed;inset:0;
-      background:rgba(0,0,0,0.5);
-      z-index:-1;
-    }
-    .topbar{
-      position:fixed;top:20px;left:20px;display:flex;gap:10px;align-items:center;z-index:100;
-    }
-    #searchInput{
-      display:none;padding:8px 12px;font-size:15px;border-radius:8px;
-      border:none;outline:none;background:#1a1d23;color:#fff;
-    }
-    #searchButton{
-      background:none;border:none;color:#fff;font-size:22px;cursor:pointer;
-    }
-    .launcher-grid{
-      margin-top:30px;
-      display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-      width:100%;max-width:1000px;margin-inline:auto;
-    }
-    .launch-btn {
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #fff;
-      padding: 16px 12px;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.25s;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      backdrop-filter: blur(6px);
-    }
-    .launch-btn:hover {
-      transform: translateY(-4px) scale(1.05);
-      background: rgba(0, 0, 0, 0.55);
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(255,255,255,0.15);
-      mix-blend-mode: lighten;
-      z-index: -1;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Ludix</title>
+<link rel="icon" href="https://i.ibb.co/hRk7Q21p/Screenshot-2025-09-17-10-47-39-AM.png" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;font-family:'Outfit',sans-serif;}
+  body{
+    margin:0;
+    color:#fff;
+    min-height:100vh;
+    background:url('https://i.pinimg.com/originals/0e/98/44/0e9844465b3cdce0a0611850a07b7457.gif') center/cover no-repeat fixed;
+    padding:80px 30px;
+  }
+  body::before {
+    content:"";
+    position:fixed;inset:0;
+    background:rgba(0,0,0,0.5);
+    z-index:-1;
+  }
+  .splash {
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: rgba(0,0,0,0.7);
+    z-index:1000;
+  }
+  #enterButton {
+    font-size: 40px;
+    font-weight: 800;
+    padding: 40px 80px;
+    border-radius: 20px;
+    border: 3px solid #fff;
+    cursor: pointer;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    animation: flash 1s infinite alternate;
+    text-align: center;
+  }
+  @keyframes flash {
+    from { background: rgba(255,0,0,0.6); color: #fff; }
+    to { background: rgba(255,255,0,0.6); color: #000; }
+  }
+
+  .topbar{
+    position:fixed;top:20px;left:20px;display:flex;gap:10px;align-items:center;z-index:100;
+  }
+  #searchInput{
+    display:none;padding:8px 12px;font-size:15px;border-radius:8px;
+    border:none;outline:none;background:#1a1d23;color:#fff;
+  }
+  #searchButton{
+    background:none;border:none;color:#fff;font-size:22px;cursor:pointer;
+  }
+  h1{
+    text-align:center;
+    font-weight:700;
+    font-size:40px;
+    letter-spacing:1px;
+    margin:0 0 30px;
+    text-shadow:0 4px 15px rgba(0,0,0,.5);
+  }
+  .launcher-grid{
+    margin-top:30px;
+    display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    width:100%;max-width:1000px;margin-inline:auto;
+  }
+  .launch-btn {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 16px 12px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+  }
+  .launch-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: rgba(0, 0, 0, 0.55);
+  }
+</style>
 </head>
 <body>
-  <div class="topbar">
-    <button id="searchButton">🔍</button>
-    <input type="text" id="searchInput" placeholder="Search games...">
-  </div>
 
-  <div style="text-align:center; margin-bottom:40px;">
-    <img src="https://i.ibb.co/rfQCWmDh/Chat-GPT-Image-Sep-17-2025-10-27-01-AM-removebg-preview.png" 
-         alt="Ludix Logo" 
-         style="height:200px; object-fit:contain; filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));">
-  </div>
+<!-- Splash -->
+<div class="splash" id="splashScreen">
+  <div id="enterButton">CLICK TO ENTER</div>
+</div>
 
-  <div class="launcher-grid" id="launcherGrid"></div>
+<!-- Top bar -->
+<div class="topbar">
+  <button id="searchButton">🔍</button>
+  <input type="text" id="searchInput" placeholder="Search games...">
+</div>
 
-  <div class="footer">Ludix</div>
+<!-- Logo -->
+<div style="text-align:center; margin-bottom:40px;">
+  <img src="https://i.ibb.co/rfQCWmDh/Chat-GPT-Image-Sep-17-2025-10-27-01-AM-removebg-preview.png" 
+       alt="Ludix Logo" 
+       style="height:200px; object-fit:contain; filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));">
+</div>
+
+<!-- Launcher Grid -->
+<div class="launcher-grid" id="launcherGrid"></div>
 
 <script>
 const websites = [
@@ -94,9 +127,9 @@ const websites = [
   { name: "NBA2kdb", url: "https://2kdb.net/" },
   { name: "Free Rider Jumps", url: "https://freeriderjumps.com/" },
   { name: "Happy Wheels", url: "https://cbgamesdev.github.io/chilibowlflash/hw/index.html" },
-  { name: "Clash Royale", url: "https://www.easyfun.gg/cloud-games/clash-royale-cloud-online.html" },
-  { name: "SmithJack", url: "https://unblocked-games.s3.amazonaws.com/jacksmith.html" },
-  { name: "Wild Castle", url: "https://www.wildcastle.io/" },
+  { name: "Clash Royale", url: "https://www.easyfun.gg/cloud-games/clash-royale-cloud-online.html"},
+  { name: "SmithJack", url: "https://unblocked-games.s3.amazonaws.com/jacksmith.html"},
+  { name: "Wild Castle", url: "https://www.wildcastle.io/"},
   { name: "Clash of Vikings", url: "https://www.bgames.com/game/clash-royale-online/" },
   { name: "1.12 Minecraft", url: "https://freedombrowser.org/static/mc/1.12.2/wasm/" },
   { name: "Proxy2", url: "https://when.casaye.com/" },
@@ -104,8 +137,8 @@ const websites = [
   { name: "Minecraft Version Client", url: "https://tuff.speedslicer.dev/" },
   { name: "1v1.lol", url: "https://selenite.cc/semag/1v1lol/index.html" },
   { name: "Capybara Clicker", url: "https://capybara-game.com/" },
-  { name: "Movies", url: "https://ww20.0123movie.net/" },
-  { name: "ULTRAKILL (TAKES A LONG TIME TO LOAD)", url: "https://truffled.lol/games/ultrakill/ultrakill/index.html" },
+  { name: "Movies", url: "https://ww20.0123movie.net/" }, 
+  { name: "ULTRAKILL (TAKES A LONG TIME TO LOAD)", url: "https://truffled.lol/games/ultrakill/ultrakill/index.html" }, 
   { name: "ALT SITE", url: "https://superduperog.netlify.app/" },
   { name: "Shell Shockers", url: "https://superdupershell.netlify.app/" },
   { name: "Slope", url: "https://mathadventure1.github.io/slope/slope/index.html" },
@@ -126,7 +159,6 @@ const websites = [
   { name: "Bloxd.io", url: "https://bloxd.io/" }
 ];
 
-// Render launcher buttons
 const grid = document.getElementById("launcherGrid");
 function renderButtons(list){
   grid.innerHTML="";
@@ -140,10 +172,9 @@ function renderButtons(list){
 }
 renderButtons(websites);
 
-// Function to open a new window with iframe
 function createWindow(url) {
   const win = window.open();
-  win.document.title = "Google Classroom";
+  win.document.title = "Ludix";
   const link = win.document.createElement("link");
   link.rel = "icon";
   link.href = "https://static.wikia.nocookie.net/nicos-nextbots-fanmade/images/a/ab/Im_spongebooby.png";
@@ -159,24 +190,24 @@ function createWindow(url) {
   win.document.body.appendChild(iframe);
 }
 
-// Search bar functionality
-const searchBtn = document.getElementById("searchButton");
-const searchInput = document.getElementById("searchInput");
-searchBtn.onclick = () => {
-  searchInput.style.display = searchInput.style.display==='block'?'none':'block';
+// Splash button
+document.getElementById("enterButton").onclick = () => {
+  createWindow(window.location.href); // open the site itself in new about:blank
+  window.close(); // close original host tab
+};
+
+// Search toggle
+const searchBtn=document.getElementById("searchButton");
+const searchInput=document.getElementById("searchInput");
+searchBtn.onclick=()=>{
+  searchInput.style.display=searchInput.style.display==='block'?'none':'block';
   searchInput.focus();
 };
-searchInput.addEventListener("input", () => {
-  const q = searchInput.value.toLowerCase();
-  renderButtons(websites.filter(w => w.name.toLowerCase().includes(q)));
-});
-
-// Auto-open first site on page load
-window.addEventListener("load", () => {
-  if(websites.length > 0){
-    createWindow(websites[0].url);
-  }
+searchInput.addEventListener("input",()=>{
+  const q=searchInput.value.toLowerCase();
+  renderButtons(websites.filter(w=>w.name.toLowerCase().includes(q)));
 });
 </script>
+
 </body>
 </html>
