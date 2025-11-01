@@ -30,27 +30,6 @@
     #searchButton{
       background:none;border:none;color:#fff;font-size:22px;cursor:pointer;
     }
-    h1{
-      text-align:center;
-      font-weight:700;
-      font-size:40px;
-      letter-spacing:1px;
-      margin:0 0 30px;
-      text-shadow:0 4px 15px rgba(0,0,0,.5);
-    }
-    .section-title{
-      text-align:center;
-      margin-top:50px;margin-bottom:15px;
-      font-size:22px;font-weight:600;text-transform:uppercase;
-      color:#ddd;text-shadow:0 2px 10px rgba(0,0,0,.6);
-    }
-    .update-log{
-      max-width:800px;margin:0 auto 40px;
-      background:rgba(0,0,0,0.4);
-      padding:20px;border-radius:12px;
-      color:#f0f0f0;line-height:1.5;font-size:15px;
-      box-shadow:0 5px 25px rgba(0,0,0,.3);
-    }
     .launcher-grid{
       margin-top:30px;
       display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
@@ -115,9 +94,9 @@ const websites = [
   { name: "NBA2kdb", url: "https://2kdb.net/" },
   { name: "Free Rider Jumps", url: "https://freeriderjumps.com/" },
   { name: "Happy Wheels", url: "https://cbgamesdev.github.io/chilibowlflash/hw/index.html" },
-  { name: "Clash Royale", url: "https://www.easyfun.gg/cloud-games/clash-royale-cloud-online.html"},
-  { name: "SmithJack", url: "https://unblocked-games.s3.amazonaws.com/jacksmith.html"},
-  { name: "Wild Castle", url: "https://www.wildcastle.io/"},
+  { name: "Clash Royale", url: "https://www.easyfun.gg/cloud-games/clash-royale-cloud-online.html" },
+  { name: "SmithJack", url: "https://unblocked-games.s3.amazonaws.com/jacksmith.html" },
+  { name: "Wild Castle", url: "https://www.wildcastle.io/" },
   { name: "Clash of Vikings", url: "https://www.bgames.com/game/clash-royale-online/" },
   { name: "1.12 Minecraft", url: "https://freedombrowser.org/static/mc/1.12.2/wasm/" },
   { name: "Proxy2", url: "https://when.casaye.com/" },
@@ -125,8 +104,8 @@ const websites = [
   { name: "Minecraft Version Client", url: "https://tuff.speedslicer.dev/" },
   { name: "1v1.lol", url: "https://selenite.cc/semag/1v1lol/index.html" },
   { name: "Capybara Clicker", url: "https://capybara-game.com/" },
-  { name: "Movies", url: "https://ww20.0123movie.net/" }, 
-  { name: "ULTRAKILL (TAKES A LONG TIME TO LOAD)", url: "https://truffled.lol/games/ultrakill/ultrakill/index.html" }, 
+  { name: "Movies", url: "https://ww20.0123movie.net/" },
+  { name: "ULTRAKILL (TAKES A LONG TIME TO LOAD)", url: "https://truffled.lol/games/ultrakill/ultrakill/index.html" },
   { name: "ALT SITE", url: "https://superduperog.netlify.app/" },
   { name: "Shell Shockers", url: "https://superdupershell.netlify.app/" },
   { name: "Slope", url: "https://mathadventure1.github.io/slope/slope/index.html" },
@@ -147,8 +126,8 @@ const websites = [
   { name: "Bloxd.io", url: "https://bloxd.io/" }
 ];
 
+// Render launcher buttons
 const grid = document.getElementById("launcherGrid");
-
 function renderButtons(list){
   grid.innerHTML="";
   list.forEach(site=>{
@@ -161,6 +140,7 @@ function renderButtons(list){
 }
 renderButtons(websites);
 
+// Function to open a new window with iframe
 function createWindow(url) {
   const win = window.open();
   win.document.title = "Google Classroom";
@@ -179,15 +159,23 @@ function createWindow(url) {
   win.document.body.appendChild(iframe);
 }
 
-const searchBtn=document.getElementById("searchButton");
-const searchInput=document.getElementById("searchInput");
-searchBtn.onclick=()=>{
-  searchInput.style.display=searchInput.style.display==='block'?'none':'block';
+// Search bar functionality
+const searchBtn = document.getElementById("searchButton");
+const searchInput = document.getElementById("searchInput");
+searchBtn.onclick = () => {
+  searchInput.style.display = searchInput.style.display==='block'?'none':'block';
   searchInput.focus();
 };
-searchInput.addEventListener("input",()=>{
-  const q=searchInput.value.toLowerCase();
-  renderButtons(websites.filter(w=>w.name.toLowerCase().includes(q)));
+searchInput.addEventListener("input", () => {
+  const q = searchInput.value.toLowerCase();
+  renderButtons(websites.filter(w => w.name.toLowerCase().includes(q)));
+});
+
+// Auto-open first site on page load
+window.addEventListener("load", () => {
+  if(websites.length > 0){
+    createWindow(websites[0].url);
+  }
 });
 </script>
 </body>
