@@ -214,8 +214,11 @@ searchInput.addEventListener("input",()=>{
   renderButtons(websites.filter(w=>w.name.toLowerCase().includes(q)));
 });
 
-// Splash Button Logic
-if(window.location.href !== "about:blank"){
+// Splash Button Logic - Fixed
+const urlParams = new URLSearchParams(window.location.search);
+const skipSplash = urlParams.get('opened');
+
+if(window.location.href !== "about:blank" && !skipSplash){
   const splash = document.createElement("div");
   splash.id = "splashBtn";
   splash.textContent = "CLICK TO ENTER";
@@ -223,7 +226,9 @@ if(window.location.href !== "about:blank"){
 
   splash.onclick = () => {
     splash.remove();
-    createWindow(window.location.href);
+    // Add a parameter to the URL so the new window knows to skip the splash
+    const newUrl = window.location.href + (window.location.href.includes('?') ? '&' : '?') + 'opened=true';
+    createWindow(newUrl);
     window.close();
   };
 }
