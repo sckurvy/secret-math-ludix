@@ -533,16 +533,24 @@ const websites = [
 
 const grid = document.getElementById("launcherGrid");
 function renderButtons(list){
-  grid.innerHTML="";
-  list.forEach(site=>{
-    const btn=document.createElement("button");
-    btn.className="launch-btn";
-    btn.textContent=site.name;
-    btn.onclick=()=>createWindow(site.url);
+  if (!grid) {
+    console.error('launcherGrid not found');
+    return;
+  }
+  grid.innerHTML = "";
+  list.forEach(site => {
+    const btn = document.createElement("button");
+    btn.className = "launch-btn";
+    btn.textContent = site.name;
+    btn.onclick = () => createWindow(site.url);
     grid.appendChild(btn);
   });
 }
-renderButtons(websites);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => renderButtons(websites));
+} else {
+  renderButtons(websites);
+}
 
 function createWindow(url){
   const wrapper = \\\`
@@ -552,6 +560,7 @@ function createWindow(url){
   <body><iframe src="\\\${url}" allowfullscreen></iframe></body></html>\\\`;
   
   const newWindow = window.open('about:blank', '_blank');
+  newWindow.document.open();
   newWindow.document.write(wrapper);
   newWindow.document.close();
 }
@@ -571,6 +580,7 @@ searchInput.addEventListener("input",()=>{
 </html>`;
 
       const newWindow = window.open('about:blank', '_blank');
+      newWindow.document.open();
       newWindow.document.write(ludixSite);
       newWindow.document.close();
       closeSecret();
